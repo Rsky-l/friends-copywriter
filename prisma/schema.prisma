@@ -1,0 +1,101 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id          Int           @id @default(autoincrement())
+  name        String
+  slug        String        @unique
+  icon        String        @default("📝")
+  sortOrder   Int           @default(0)
+  copywritings Copywriting[]
+  images      Image[]
+}
+
+model Mood {
+  id          Int           @id @default(autoincrement())
+  name        String
+  slug        String        @unique
+  icon        String        @default("✨")
+  sortOrder   Int           @default(0)
+  copywritings Copywriting[]
+}
+
+model Copywriting {
+  id                Int       @id @default(autoincrement())
+  content           String
+  categoryId        Int
+  moodId            Int
+  wordCount         Int       @default(0)
+  isFree            Boolean   @default(true)
+  isOriginal        Boolean   @default(false)
+  suggestImageStyle String    @default("")
+  usageCount        Int       @default(0)
+  createdAt         DateTime  @default(now())
+  category          Category  @relation(fields: [categoryId], references: [id])
+  mood              Mood      @relation(fields: [moodId], references: [id])
+}
+
+model Image {
+  id         Int       @id @default(autoincrement())
+  url        String
+  styleTag   String
+  categoryId Int?
+  isFree     Boolean   @default(true)
+  source     String    @default("stock")
+  category   Category? @relation(fields: [categoryId], references: [id])
+}
+
+model CardTemplate {
+  id         Int     @id @default(autoincrement())
+  name       String
+  previewUrl String  @default("")
+  configJson String
+  isFree     Boolean @default(false)
+  category   String  @default("general")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  openid    String    @unique
+  nickname  String    @default("")
+  avatar    String    @default("")
+  isPaid    Boolean   @default(false)
+  paidAt    DateTime?
+  createdAt DateTime  @default(now())
+  orders    Order[]
+  aiLogs    AiLog[]
+}
+
+model Order {
+  id            Int       @id @default(autoincrement())
+  userId        Int
+  amount        Float     @default(5.9)
+  status        String    @default("pending")
+  transactionId String    @default("")
+  paidAt        DateTime?
+  createdAt     DateTime  @default(now())
+  user          User      @relation(fields: [userId], references: [id])
+}
+
+model AiLog {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  type      String
+  input     String
+  output    String
+  tokenUsed Int      @default(0)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  password String
+}
