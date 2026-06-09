@@ -2,17 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { createPayment } from "@/lib/payment";
 import { getUserId } from "@/lib/auth";
 
-const MOCK = process.env.MOCK_PAYMENT === "true";
-const APP_URL = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
+const APP_URL = process.env.APP_URL || process.env.VERCEL_URL
+  ? `https://${process.env.APP_URL || process.env.VERCEL_URL}`
   : "http://localhost:3000";
 
 export async function POST(req: NextRequest) {
   try {
     let userId = await getUserId();
 
-    // Mock mode or first-time user: auto-create dev user
-    if (!userId && MOCK) {
+    // MVP: auto-create dev user if not logged in (mock auth until WeChat OAuth)
+    if (!userId) {
       userId = 1;
     }
 
