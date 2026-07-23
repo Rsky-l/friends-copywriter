@@ -1,0 +1,7 @@
+<view class="scene-card" bindtap="onTap" hover-class="scene-card--hover">
+  <view class="scene-icon">{{icon}}</view>
+  <view class="scene-name">{{name}}</view>
+  <view class="scene-tags" wx:if="{{tags.length}}">
+    <text class="tag" wx:for="{{tags}}" wx:key="*this" wx:for-item="t">{{t}}</text>
+  </view>
+</view>
