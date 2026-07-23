@@ -1,0 +1,69 @@
+<view class="container">
+  <view class="scene-header">
+    <view class="scene-badge">{{sceneIcon}} {{sceneName}}</view>
+  </view>
+
+  <view class="input-section">
+    <view class="input-group">
+      <view class="input-label">💬 对方说了什么？</view>
+      <textarea
+        class="input-area"
+        placeholder="把对方让你不服、不认可的那句话写进来..."
+        value="{{opponentView}}"
+        bindinput="onOpponentInput"
+        maxlength="500"
+        auto-height
+      />
+      <view class="input-count">{{opponentView.length}}/500</view>
+    </view>
+
+    <view class="connector">
+      <view class="connector-line"></view>
+      <view class="connector-hint">你的想法会与对方观点融合，生成更有力的表达</view>
+    </view>
+
+    <view class="input-group">
+      <view class="input-label">💭 你的想法（乱一点没关系）</view>
+      <textarea
+        class="input-area input-thoughts"
+        placeholder="把脑子里碎片想法倒出来...无论是关键词、半句话还是情绪都可以"
+        value="{{userThoughts}}"
+        bindinput="onThoughtsInput"
+        maxlength="800"
+        auto-height
+      />
+      <view class="input-actions">
+        <view class="input-count">{{userThoughts.length}}/800</view>
+        <view class="voice-btn" bindtap="onVoiceInput">
+          <text>🎤 语音输入</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <button class="btn-primary generate-btn" bindtap="onGenerate" disabled="{{generating}}">
+    {{generating ? '正在组织你的想法...' : '✨ 生成表达'}}
+  </button>
+
+  <view class="generating-hint" wx:if="{{generating}}">
+    <view class="thinking-dots">
+      <view class="dot"></view>
+      <view class="dot"></view>
+      <view class="dot"></view>
+    </view>
+    <text>AI 正在把你的碎片想法组织成完整表达...</text>
+  </view>
+
+  <view class="bottom-entries">
+    <view class="entry-item" bindtap="onEnterBattle">
+      <view class="entry-icon">🥊</view>
+      <view class="entry-text">进入这个场景的模拟对战</view>
+      <view class="entry-arrow">→</view>
+    </view>
+    <view class="entry-item" bindtap="onViewNotes">
+      <view class="entry-icon">📖</view>
+      <view class="entry-text">查看历史笔记</view>
+      <view class="entry-arrow">→</view>
+    </view>
+  </view>
+</view>
