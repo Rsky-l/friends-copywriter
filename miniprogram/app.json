@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/square/square",
+    "pages/training/training",
+    "pages/profile/profile",
+    "pages/generate/generate",
+    "pages/result/result",
+    "pages/battle/battle",
+    "pages/notes/notes"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#FF7A45",
+    "navigationBarTitleText": "表达助手",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#FFF7F0",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#FF7A45",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/square/square",
+        "text": "场景广场",
+        "iconPath": "images/tab-scene.png",
+        "selectedIconPath": "images/tab-scene-active.png"
+      },
+      {
+        "pagePath": "pages/training/training",
+        "text": "训练场",
+        "iconPath": "images/tab-training.png",
+        "selectedIconPath": "images/tab-training-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/tab-profile.png",
+        "selectedIconPath": "images/tab-profile-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

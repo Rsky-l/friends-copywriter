@@ -1,0 +1,107 @@
+:root {
+  /* 暖色系主色调 */
+  --color-primary: #FF7A45;
+  --color-primary-light: #FFA940;
+  --color-primary-dark: #D94838;
+  --color-primary-bg: #FFF1E6;
+
+  /* 背景色 */
+  --bg-primary: #FFF7F0;
+  --bg-white: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-input: #FFFBF7;
+
+  /* 文字色 */
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --text-hint: #999999;
+  --text-white: #FFFFFF;
+
+  /* 边框与阴影 */
+  --border-color: #F0E0D0;
+  --shadow-card: 0 4rpx 24rpx rgba(255, 122, 69, 0.08);
+  --shadow-hover: 0 8rpx 32rpx rgba(255, 122, 69, 0.15);
+
+  /* 圆角 */
+  --radius-sm: 12rpx;
+  --radius-md: 20rpx;
+  --radius-lg: 28rpx;
+
+  /* 间距 */
+  --spacing-xs: 8rpx;
+  --spacing-sm: 16rpx;
+  --spacing-md: 24rpx;
+  --spacing-lg: 32rpx;
+  --spacing-xl: 48rpx;
+
+  /* 字体大小 */
+  --font-xs: 22rpx;
+  --font-sm: 26rpx;
+  --font-md: 28rpx;
+  --font-lg: 32rpx;
+  --font-xl: 36rpx;
+  --font-title: 44rpx;
+}
+
+/* 通用按钮样式 */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  color: var(--text-white);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 24rpx 48rpx;
+  font-size: var(--font-lg);
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 8rpx 24rpx rgba(255, 122, 69, 0.3);
+}
+
+.btn-primary:active {
+  opacity: 0.85;
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  background: var(--bg-white);
+  color: var(--color-primary);
+  border: 2rpx solid var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: 20rpx 40rpx;
+  font-size: var(--font-md);
+  text-align: center;
+}
+
+/* 通用卡片样式 */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-md);
+}
+
+/* 通用输入框样式 */
+.input-area {
+  background: var(--bg-input);
+  border: 2rpx solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20rpx 24rpx;
+  font-size: var(--font-md);
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 120rpx;
+}
+
+.input-area:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4rpx rgba(255, 122, 69, 0.1);
+}
+
+/* 标签样式 */
+.tag {
+  display: inline-block;
+  background: var(--color-primary-bg);
+  color: var(--color-primary);
+  padding: 6rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: var(--font-xs);
+}
