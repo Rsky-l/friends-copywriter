@@ -53,12 +53,14 @@ router.post('/', async (req, res) => {
 // GET /api/generate/history - 获取用户的历史生成记录
 router.get('/history', (req, res) => {
   const { limit = 20, offset = 0 } = req.query;
-  const userRecords = generationHistory
+  const matchingRecords = generationHistory
     .filter(r => r.userId === req.userId)
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-    .slice(Number(offset), Number(offset) + Number(limit));
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-  res.json({ records: userRecords, total: userRecords.length });
+  const total = matchingRecords.length;
+  const userRecords = matchingRecords.slice(Number(offset), Number(offset) + Number(limit));
+
+  res.json({ records: userRecords, total });
 });
 
 module.exports = router;
