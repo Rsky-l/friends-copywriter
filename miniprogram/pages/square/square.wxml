@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="header">
+    <view class="header-title">今天想练习什么场景？</view>
+    <view class="header-subtitle">选择一个场景，开始提升你的表达力</view>
+  </view>
+
+  <view class="search-bar">
+    <view class="search-icon">🔍</view>
+    <input
+      class="search-input"
+      placeholder="搜索特定场景..."
+      value="{{keyword}}"
+      bindinput="onSearchInput"
+      bindconfirm="onSearch"
+      confirm-type="search"
+    />
+    <view class="search-clear" wx:if="{{keyword}}" bindtap="onClearSearch">✕</view>
+  </view>
+
+  <view class="scene-grid">
+    <scene-card
+      wx:for="{{scenes}}"
+      wx:key="id"
+      icon="{{item.icon}}"
+      name="{{item.name}}"
+      tags="{{item.tags}}"
+      sceneId="{{item.id}}"
+      bind:select="onSceneSelect"
+    />
+  </view>
+
+  <view class="empty-state" wx:if="{{scenes.length === 0 && !loading}}">
+    <view class="empty-icon">🔍</view>
+    <view class="empty-text">没有找到"{{keyword}}"相关场景</view>
+    <view class="empty-hint">试试其他关键词？</view>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text>加载场景中...</text>
+  </view>
+</view>
