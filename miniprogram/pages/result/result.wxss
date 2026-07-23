@@ -1,0 +1,208 @@
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.result-badge {
+  display: inline-block;
+  background: var(--color-primary-bg);
+  color: var(--color-primary-dark);
+  padding: 10rpx 24rpx;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-sm);
+  font-weight: 600;
+}
+
+.result-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.action-btn {
+  font-size: var(--font-sm);
+  color: var(--color-primary);
+  padding: 8rpx 16rpx;
+  background: var(--color-primary-bg);
+  border-radius: var(--radius-sm);
+}
+
+.expression-card {
+  background: linear-gradient(135deg, #FFF7F0, #FFFFFF);
+  border: 2rpx solid var(--color-primary-light);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+}
+
+.expression-card::before {
+  content: '💬';
+  position: absolute;
+  top: -20rpx;
+  left: var(--spacing-md);
+  font-size: 40rpx;
+}
+
+.expression-content {
+  font-size: var(--font-lg);
+  line-height: 1.8;
+  color: var(--text-primary);
+  white-space: pre-wrap;
+}
+
+.analysis-section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.section-title {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.source-block {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+.user-source {
+  border-left: 6rpx solid var(--color-primary);
+}
+
+.ai-source {
+  border-left: 6rpx solid #FFD700;
+}
+
+.source-label {
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.source-item {
+  font-size: var(--font-sm);
+  color: var(--text-primary);
+  padding: 4rpx 0;
+  padding-left: var(--spacing-sm);
+}
+
+.technique-block {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  border-left: 6rpx solid #7B68EE;
+}
+
+.technique-detail {
+  font-size: var(--font-sm);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.6;
+}
+
+.technique-apply {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  background: #F8F4FF;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-sm);
+}
+
+.apply-label {
+  font-weight: 600;
+  color: #7B68EE;
+}
+
+.predict-section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.predict-item {
+  margin-bottom: var(--spacing-md);
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+}
+
+.predict-opponent,
+.predict-you {
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.predict-opponent {
+  background: #FFF0F0;
+}
+
+.predict-you {
+  background: #F0FFF0;
+}
+
+.predict-role {
+  font-size: var(--font-xs);
+  font-weight: 600;
+  color: var(--text-hint);
+  margin-bottom: 4rpx;
+}
+
+.predict-text {
+  font-size: var(--font-sm);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.predict-arrow {
+  text-align: center;
+  font-size: 24rpx;
+  color: var(--color-primary);
+  margin: 4rpx 0;
+}
+
+.result-footer {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 2rpx solid var(--border-color);
+}
+
+.result-footer .btn-secondary,
+.result-footer .btn-primary {
+  flex: 1;
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-xl);
+  color: var(--text-hint);
+}
+
+.thinking-dots {
+  display: flex;
+  gap: 12rpx;
+  margin-bottom: var(--spacing-sm);
+}
+
+.dot {
+  width: 12rpx;
+  height: 12rpx;
+  background: var(--color-primary);
+  border-radius: 50%;
+  animation: pulse 0.8s ease-in-out infinite alternate;
+}
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes pulse {
+  from { opacity: 0.3; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1.2); }
+}

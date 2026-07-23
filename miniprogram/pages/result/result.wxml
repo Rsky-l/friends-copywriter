@@ -1,0 +1,74 @@
+<view class="container">
+  <view class="result-header">
+    <view class="result-badge">{{sceneIcon}} {{sceneName}}</view>
+    <view class="result-actions">
+      <view class="action-btn" bindtap="onCopyAll">📋 复制</view>
+      <view class="action-btn" bindtap="onSaveNote">💾 保存</view>
+    </view>
+  </view>
+
+  <style-tabs
+    currentStyle="{{currentStyle}}"
+    bind:change="onStyleChange"
+  />
+
+  <view class="expression-card" wx:if="{{currentData.expression}}">
+    <view class="expression-content">{{currentData.expression}}</view>
+  </view>
+
+  <view class="loading-state" wx:if="{{switchingStyle}}">
+    <view class="thinking-dots">
+      <view class="dot"></view><view class="dot"></view><view class="dot"></view>
+    </view>
+    <text>切换风格中...</text>
+  </view>
+
+  <block wx:if="{{!switchingStyle && currentData.expression}}">
+    <view class="analysis-section">
+      <view class="section-title">🔍 表达解析</view>
+
+      <view class="source-block user-source" wx:if="{{currentData.userSource.length}}">
+        <view class="source-label">✓ 来自你的想法</view>
+        <view class="source-item" wx:for="{{currentData.userSource}}" wx:key="*this">
+          {{item}}
+        </view>
+      </view>
+
+      <view class="source-block ai-source" wx:if="{{currentData.aiSupplement.length}}">
+        <view class="source-label">✦ AI 补充的论据</view>
+        <view class="source-item" wx:for="{{currentData.aiSupplement}}" wx:key="*this">
+          {{item}}
+        </view>
+      </view>
+
+      <view class="technique-block" wx:if="{{currentData.technique}}">
+        <view class="source-label">💡 {{currentData.technique.name}}</view>
+        <view class="technique-detail">{{currentData.technique.explanation}}</view>
+        <view class="technique-apply">
+          <text class="apply-label">如何运用：</text>
+          {{currentData.technique.how_to_apply}}
+        </view>
+      </view>
+    </view>
+
+    <view class="predict-section" wx:if="{{currentData.counterPredictions.length}}">
+      <view class="section-title">⚡ 对方可能的回击 & 你的应对</view>
+      <view class="predict-item" wx:for="{{currentData.counterPredictions}}" wx:key="opponentReply" wx:for-item="pred">
+        <view class="predict-opponent">
+          <view class="predict-role">对方可能说：</view>
+          <view class="predict-text">{{pred.opponentReply}}</view>
+        </view>
+        <view class="predict-arrow">↓</view>
+        <view class="predict-you">
+          <view class="predict-role">你可以回应：</view>
+          <view class="predict-text">{{pred.yourResponse}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view class="result-footer" wx:if="{{!switchingStyle}}">
+    <button class="btn-secondary" bindtap="onSaveNote">💾 保存到笔记</button>
+    <button class="btn-primary" bindtap="onEnterBattle">🥊 进入模拟对战</button>
+  </view>
+</view>
