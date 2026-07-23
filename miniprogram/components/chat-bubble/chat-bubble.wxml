@@ -1,0 +1,10 @@
+<view class="bubble-wrapper {{role === 'opponent' ? 'bubble--left' : 'bubble--right'}}">
+  <view class="bubble-avatar">{{role === 'opponent' ? '🤖' : '👤'}}</view>
+  <view class="bubble-body">
+    <view class="bubble-name">{{role === 'opponent' ? '对手' : '你'}}</view>
+    <view class="bubble-content">{{content}}</view>
+    <view class="bubble-meta" wx:if="{{attackPoint}}">
+      <text class="meta-tag">攻击点：{{attackPoint}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,13 @@
+<scroll-view class="style-tabs" scroll-x enable-flex>
+  <view
+    class="tab-item {{currentStyle === item.value ? 'tab-item--active' : ''}}"
+    wx:for="{{styles}}"
+    wx:key="value"
+    data-style="{{item.value}}"
+    bindtap="onSelect"
+  >
+    <view class="tab-icon">{{item.icon}}</view>
+    <view class="tab-name">{{item.name}}</view>
+    <view class="tab-desc">{{item.desc}}</view>
+  </view>
+</scroll-view>
