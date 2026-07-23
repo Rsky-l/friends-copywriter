@@ -47,16 +47,17 @@ router.post('/turn', async (req, res) => {
     return res.status(404).json({ error: '对战不存在或已结束' });
   }
 
-  // 记录用户回应
-  battle.rounds.push({ role: 'user', content: userResponse });
-
-  // 构建对话历史文本
-  const historyText = battle.rounds
-    .map(r => `${r.role === 'opponent' ? '对手' : '你'}: ${r.content}`)
-    .join('\n');
+  // 构建对话历史文本（包含本轮用户回应，但不预先提交到 rounds）
+  const historyText = [
+    ...battle.rounds.map(r => `${r.role === 'opponent' ? '对手' : '你'}: ${r.content}`),
+    `你: ${userResponse}`
+  ].join('\n');
 
   try {
     const result = await battleTurn(battle.scene, historyText);
+
+    // AI 调用成功后原子性提交本轮双方消息
+    battle.rounds.push({ role: 'user', content: userResponse });
     battle.rounds.push({
       role: 'opponent',
       content: result.reply,
