@@ -27,6 +27,12 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() });
 });
 
+// 全局错误处理
+app.use((err, req, res, next) => {
+  console.error('Unhandled error:', err.message);
+  res.status(500).json({ error: '内部服务器错误' });
+});
+
 app.listen(PORT, () => {
   console.log(`表达助手服务已启动: http://localhost:${PORT}`);
 });
