@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "模拟对战",
+  "usingComponents": {
+    "chat-bubble": "/components/chat-bubble/chat-bubble"
+  }
+}

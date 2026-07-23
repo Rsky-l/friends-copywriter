@@ -1,0 +1,117 @@
+<view class="battle-container">
+  <view class="battle-bar">
+    <view class="battle-scene">🎯 {{sceneName}}</view>
+    <view class="battle-round">第 {{currentRound}} 轮</view>
+  </view>
+
+  <scroll-view class="chat-area" scroll-y scroll-into-view="msg-{{messages.length - 1}}" scroll-with-animation>
+    <view wx:for="{{messages}}" wx:key="index" id="msg-{{index}}">
+      <chat-bubble
+        role="{{item.role}}"
+        content="{{item.content}}"
+        attackPoint="{{item.attackPoint}}"
+      />
+    </view>
+
+    <view class="typing-indicator" wx:if="{{waiting}}">
+      <view class="typing-dot"></view>
+      <view class="typing-dot"></view>
+      <view class="typing-dot"></view>
+      <text>对手正在思考...</text>
+    </view>
+  </scroll-view>
+
+  <view class="battle-input-area" wx:if="{{!battleEnded}}">
+    <view class="quick-input" wx:if="{{showThoughtInput}}">
+      <textarea
+        class="quick-textarea"
+        placeholder="你的碎片想法（可选）..."
+        value="{{quickThought}}"
+        bindinput="onQuickThought"
+        maxlength="300"
+        auto-height
+      />
+    </view>
+
+    <view class="battle-actions">
+      <view class="action-row">
+        <button class="btn-action btn-thought" bindtap="onToggleThought">
+          💭 {{showThoughtInput ? '收起' : '写想法'}}
+        </button>
+        <button class="btn-action btn-generate" bindtap="onGenerateResponse" disabled="{{waiting}}">
+          ✨ 生成回应
+        </button>
+        <button class="btn-action btn-manual" bindtap="onManualInput">
+          ✍️ 自己打
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <view class="manual-input-overlay" wx:if="{{manualMode}}">
+    <view class="manual-input-card">
+      <view class="manual-title">✍️ 手动输入你的回应</view>
+      <textarea
+        class="manual-textarea"
+        placeholder="写出你的回应..."
+        value="{{manualText}}"
+        bindinput="onManualText"
+        maxlength="1000"
+        auto-focus
+      />
+      <view class="manual-actions">
+        <button class="btn-secondary" bindtap="onCancelManual">取消</button>
+        <button class="btn-primary" bindtap="onSendManual" disabled="{{!manualText.trim()}}">发送</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="end-battle-btn" wx:if="{{messages.length > 2 && !battleEnded}}">
+    <button class="btn-secondary" bindtap="onEndBattle">🏳️ 结束对战 & 查看复盘</button>
+  </view>
+
+  <view class="debrief-overlay" wx:if="{{showDebrief}}">
+    <scroll-view class="debrief-card" scroll-y>
+      <view class="debrief-title">📊 对战复盘</view>
+      <view class="debrief-overall">{{debrief.overall}}</view>
+
+      <view class="debrief-section" wx:if="{{debrief.highlights.length}}">
+        <view class="debrief-subtitle">✅ 亮点</view>
+        <view class="debrief-item" wx:for="{{debrief.highlights}}" wx:key="round" wx:for-item="h">
+          <view class="debrief-round-tag">第{{h.round}}轮</view>
+          <view class="debrief-what">{{h.what}}</view>
+          <view class="debrief-why">{{h.why}}</view>
+        </view>
+      </view>
+
+      <view class="debrief-section" wx:if="{{debrief.improvements.length}}">
+        <view class="debrief-subtitle">🔧 可改进</view>
+        <view class="debrief-item" wx:for="{{debrief.improvements}}" wx:key="round" wx:for-item="imp">
+          <view class="debrief-round-tag">第{{imp.round}}轮</view>
+          <view class="debrief-what">{{imp.what}}</view>
+          <view class="debrief-suggestion">💡 {{imp.suggestion}}</view>
+        </view>
+      </view>
+
+      <view class="score-section" wx:if="{{debrief.score}}">
+        <view class="debrief-subtitle">📈 能力评分</view>
+        <view class="score-grid">
+          <view class="score-item" wx:for="{{scoreList}}" wx:key="key">
+            <view class="score-name">{{item.label}}</view>
+            <view class="score-bar-bg">
+              <view class="score-bar-fill" style="width: {{item.value * 10}}%"></view>
+            </view>
+            <view class="score-num">{{item.value}}</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="debrief-tip" wx:if="{{debrief.tip}}">
+        <view class="tip-label">💡 关键建议</view>
+        <view class="tip-text">{{debrief.tip}}</view>
+      </view>
+
+      <button class="btn-primary" bindtap="onCloseDebrief">完成</button>
+    </scroll-view>
+  </view>
+</view>
