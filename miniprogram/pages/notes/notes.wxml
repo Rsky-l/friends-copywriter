@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="search-bar">
+    <input class="search-input" placeholder="搜索笔记..." value="{{keyword}}" bindinput="onSearchInput" bindconfirm="onSearch" confirm-type="search" />
+    <view class="search-icon">🔍</view>
+  </view>
+
+  <view class="notes-list">
+    <view class="note-card" wx:for="{{notes}}" wx:key="id">
+      <view class="note-header">
+        <view class="note-scene">{{item.scene}}</view>
+        <view class="note-time">{{item.savedAt}}</view>
+      </view>
+      <view class="note-expression">{{item.expression}}</view>
+      <view class="note-footer">
+        <view class="note-style tag">{{item.style === 'logical' ? '逻辑拆解' : item.style === 'humorous' ? '幽默化解' : item.style === 'rhetorical' ? '反问引导' : '情感共鸣'}}</view>
+        <view class="note-actions">
+          <text class="note-star {{item.starred ? 'starred' : ''}}" bindtap="onToggleStar" data-id="{{item.id}}">{{item.starred ? '⭐' : '☆'}}</text>
+          <text class="note-delete" bindtap="onDeleteNote" data-id="{{item.id}}">🗑️</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:if="{{notes.length === 0 && !loading}}">
+      <view class="empty-icon">📝</view>
+      <view class="empty-text">还没有保存笔记</view>
+      <view class="empty-hint">在生成表达后点击"保存到笔记"</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "训练场",
+  "usingComponents": {
+    "scene-card": "/components/scene-card/scene-card"
+  }
+}

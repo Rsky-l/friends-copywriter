@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="header">
+    <view class="header-title">训练场</view>
+    <view class="header-subtitle">系统提升你的表达能力</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">🥊 模拟对战</view>
+    <view class="section-desc">选择场景，AI 扮演强硬对手与你多轮对抗</view>
+    <view class="scene-grid">
+      <scene-card
+        wx:for="{{hotScenes}}"
+        wx:key="id"
+        icon="{{item.icon}}"
+        name="{{item.name}}"
+        tags="{{item.tags}}"
+        sceneId="{{item.id}}"
+        bind:select="onBattleScene"
+      />
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">🎯 技能拆解</view>
+    <view class="section-desc">针对不同表达维度进行专项练习</view>
+    <view class="skill-cards">
+      <view class="skill-card" wx:for="{{skills}}" wx:key="key" bindtap="onSkillTap" data-skill="{{item.key}}">
+        <view class="skill-icon">{{item.icon}}</view>
+        <view class="skill-name">{{item.name}}</view>
+        <view class="skill-desc">{{item.desc}}</view>
+        <view class="skill-progress">
+          <view class="progress-bar">
+            <view class="progress-fill" style="width: {{item.progress}}%"></view>
+          </view>
+          <text>{{item.progress}}%</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">📖 历史笔记</view>
+    <view class="section-desc">查看你保存的所有表达记录</view>
+    <button class="btn-secondary" bindtap="onViewNotes">查看全部笔记 →</button>
+  </view>
+</view>

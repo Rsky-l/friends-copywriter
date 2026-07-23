@@ -1,0 +1,40 @@
+<view class="container">
+  <view class="profile-header">
+    <view class="avatar">👤</view>
+    <view class="profile-name">表达练习者</view>
+    <view class="profile-desc">每一次表达，都是成长</view>
+  </view>
+
+  <view class="stats-grid">
+    <view class="stat-card">
+      <view class="stat-num">{{stats.totalGenerations}}</view>
+      <view class="stat-label">生成次数</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-num">{{stats.totalBattles}}</view>
+      <view class="stat-label">对战局数</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-num">{{stats.totalNotes}}</view>
+      <view class="stat-label">保存笔记</view>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-item" bindtap="onViewNotes">
+      <view class="menu-icon">📖</view>
+      <view class="menu-text">我的笔记</view>
+      <view class="menu-arrow">→</view>
+    </view>
+    <view class="menu-item">
+      <view class="menu-icon">📊</view>
+      <view class="menu-text">成长报告</view>
+      <view class="menu-arrow">→</view>
+    </view>
+    <view class="menu-item">
+      <view class="menu-icon">⚙️</view>
+      <view class="menu-text">设置</view>
+      <view class="menu-arrow">→</view>
+    </view>
+  </view>
+</view>
