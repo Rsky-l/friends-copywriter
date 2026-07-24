@@ -115,7 +115,10 @@ Page({
       skillName: name,
       skillIcon: icon,
       skillDesc: content.desc,
-      teachingCards: content.cards
+      teachingCards: content.cards.map(card => ({
+        ...card,
+        lines: card.body.split('\n')
+      }))
     });
   },
 

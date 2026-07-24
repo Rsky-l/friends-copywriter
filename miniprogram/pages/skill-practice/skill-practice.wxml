@@ -12,7 +12,9 @@
       <view class="card" wx:for="{{teachingCards}}" wx:key="title">
         <view class="card-icon">{{item.icon}}</view>
         <view class="card-title">{{item.title}}</view>
-        <view class="card-body">{{item.body}}</view>
+        <view class="card-body">
+          <view class="card-line" wx:for="{{item.lines}}" wx:key="*this">{{item}}</view>
+        </view>
       </view>
     </scroll-view>
   </view>

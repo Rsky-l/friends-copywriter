@@ -22,7 +22,8 @@
 }
 .card-icon { font-size: 48rpx; margin-bottom: var(--spacing-sm); }
 .card-title { font-size: var(--font-lg); font-weight: 600; margin-bottom: var(--spacing-xs); color: var(--color-primary); }
-.card-body { font-size: var(--font-sm); color: var(--text-secondary); line-height: 1.6; }
+.card-body { font-size: var(--font-sm); color: var(--text-secondary); line-height: 1.8; }
+.card-line { padding: 4rpx 0; }
 
 /* 练习区 */
 .practice-section { }
