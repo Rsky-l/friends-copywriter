@@ -12,19 +12,25 @@ Page({
     currentData: { expression: '', userSource: [], aiSupplement: [], technique: null, counterPredictions: [] }
   },
 
-  onLoad(options) {
-    const rawData = decodeURIComponent(options.data || '{}');
-    const parsed = JSON.parse(rawData);
+  onLoad() {
+    const app = getApp();
+    const data = app.globalData.lastResult;
+
+    if (!data) {
+      wx.showToast({ title: '数据丢失，请重新生成', icon: 'none' });
+      setTimeout(() => wx.navigateBack(), 1500);
+      return;
+    }
 
     this.setData({
-      sceneName: parsed.sceneName || '',
-      sceneIcon: parsed.sceneIcon || '',
-      opponentView: parsed.opponentView || '',
-      userThoughts: parsed.userThoughts || '',
+      sceneName: data.sceneName || '',
+      sceneIcon: data.sceneIcon || '',
+      opponentView: data.opponentView || '',
+      userThoughts: data.userThoughts || '',
       styleResults: {
-        logical: parsed.result
+        logical: data.result
       },
-      currentData: parsed.result
+      currentData: data.result
     });
   },
 

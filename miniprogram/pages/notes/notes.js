@@ -24,7 +24,9 @@ Page({
         loading: false
       });
     } catch (err) {
-      this.setData({ loading: false });
+      console.error('加载笔记失败:', err);
+      wx.showToast({ title: '加载笔记失败', icon: 'none' });
+      this.setData({ loading: false, notes: [] });
     }
   },
 

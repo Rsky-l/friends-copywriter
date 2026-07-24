@@ -77,16 +77,18 @@ Page({
 
       storage.clearDraft(this.data.sceneId);
 
-      const params = encodeURIComponent(JSON.stringify({
+      // 通过 globalData 传递结果数据，避免 URL 参数溢出
+      const app = getApp();
+      app.globalData.lastResult = {
         sceneName: this.data.sceneName,
         sceneIcon: this.data.sceneIcon,
         opponentView,
         userThoughts,
         result
-      }));
+      };
 
       wx.navigateTo({
-        url: `/pages/result/result?data=${params}`
+        url: '/pages/result/result'
       });
     } catch (err) {
       wx.showToast({ title: err.error || '生成失败，请重试', icon: 'none' });

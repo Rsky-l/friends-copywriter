@@ -3,7 +3,13 @@
 // 后续可接入微信 code2session 接口做正式校验
 
 function authMiddleware(req, res, next) {
-  const openid = req.headers['x-user-openid'] || req.headers['authorization'];
+  let openid = req.headers['x-user-openid'];
+
+  // 从 Authorization 头提取 token，去除 "Bearer " 前缀
+  if (!openid && req.headers['authorization']) {
+    const authHeader = req.headers['authorization'];
+    openid = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
+  }
 
   if (!openid) {
     // MVP 阶段使用设备标识作为临时身份

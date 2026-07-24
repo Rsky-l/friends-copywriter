@@ -15,7 +15,10 @@ Page({
     try {
       const res = await api.getScenes();
       this.setData({ hotScenes: res.scenes.slice(0, 6) });
-    } catch (err) { /* 使用预设场景 */ }
+    } catch (err) {
+      console.error('加载场景失败:', err);
+      // hotScenes 保持初始空数组，页面显示空状态
+    }
   },
 
   onBattleScene(e) {

@@ -46,6 +46,9 @@ router.post('/turn', async (req, res) => {
   if (!battle) {
     return res.status(404).json({ error: '对战不存在或已结束' });
   }
+  if (battle.ended) {
+    return res.status(400).json({ error: '对战已结束，无法继续' });
+  }
 
   // 构建对话历史文本（包含本轮用户回应，但不预先提交到 rounds）
   const historyText = [
@@ -94,6 +97,7 @@ router.post('/end', async (req, res) => {
   try {
     const debrief = await debriefBattle(historyText);
     battle.debrief = debrief;
+    battle.ended = true;
     battle.endedAt = new Date().toISOString();
 
     res.json({
@@ -105,6 +109,16 @@ router.post('/end', async (req, res) => {
     console.error('复盘生成失败:', error.message);
     res.status(500).json({ error: '复盘生成失败' });
   }
+});
+
+// GET /api/battle/stats - 获取用户对战统计
+router.get('/stats', (req, res) => {
+  const userBattles = Object.values(battles).filter(b => b.userId === req.userId);
+  res.json({
+    totalBattles: userBattles.length,
+    completedBattles: userBattles.filter(b => b.ended).length,
+    totalRounds: userBattles.reduce((sum, b) => sum + Math.floor(b.rounds.length / 2), 0)
+  });
 });
 
 module.exports = router;

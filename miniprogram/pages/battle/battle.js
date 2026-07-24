@@ -54,9 +54,12 @@ Page({
 
   async onGenerateResponse() {
     if (this.data.waiting) return;
-    const quickThought = this.data.quickThought;
-    const userResponse = quickThought || '我不同意你的看法，让我想想怎么说。';
-    await this.sendTurn(userResponse);
+    const quickThought = this.data.quickThought.trim();
+    if (!quickThought) {
+      wx.showToast({ title: '请先输入你的碎片想法', icon: 'none' });
+      return;
+    }
+    await this.sendTurn(quickThought);
   },
 
   async sendTurn(userResponse) {

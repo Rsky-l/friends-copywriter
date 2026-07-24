@@ -18,8 +18,8 @@ function request(method, path, data = {}) {
         }
       },
       fail(err) {
-        wx.showToast({ title: '网络连接失败', icon: 'none' });
-        reject(err);
+        // 不在 api 层弹 toast，由各页面自行处理错误提示
+        reject({ networkError: true, ...err });
       }
     });
   });
@@ -45,6 +45,9 @@ const api = {
   },
   endBattle(data) {
     return request('POST', '/api/battle/end', data);
+  },
+  getBattleStats() {
+    return request('GET', '/api/battle/stats');
   },
 
   // 笔记
