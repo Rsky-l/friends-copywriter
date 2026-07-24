@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { buildGeneratePrompt, buildBattlePrompt, buildDebriefPrompt } = require('./prompts');
+const { buildGeneratePrompt, buildBattlePrompt, buildDebriefPrompt, buildSkillPracticePrompt } = require('./prompts');
 
 const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
 const DEEPSEEK_BASE_URL = process.env.DEEPSEEK_BASE_URL || 'https://api.deepseek.com';
@@ -113,4 +113,16 @@ async function debriefBattle(history) {
   return safeJsonParse(result);
 }
 
-module.exports = { chatCompletion, generateExpression, battleTurn, debriefBattle };
+async function evaluateSkillPractice(skillKey, skillName, scenario, userAnswer) {
+  const systemPrompt = buildSkillPracticePrompt(skillKey, skillName, scenario, userAnswer);
+  const userMessage = `请评估我在"${skillName}"方面的练习表现`;
+
+  const result = await chatCompletion(systemPrompt, userMessage, {
+    temperature: 0.5,
+    maxTokens: 1500
+  });
+
+  return safeJsonParse(result);
+}
+
+module.exports = { chatCompletion, generateExpression, battleTurn, debriefBattle, evaluateSkillPractice };

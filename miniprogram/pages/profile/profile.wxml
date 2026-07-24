@@ -1,8 +1,13 @@
 <view class="container">
   <view class="profile-header">
-    <view class="avatar">👤</view>
+    <view class="avatar">{{profileGender === 'male' ? '👦' : '👧'}}</view>
     <view class="profile-name">表达练习者</view>
     <view class="profile-desc">每一次表达，都是成长</view>
+    <view class="gender-toggle" bindtap="onToggleGender">
+      <view class="gender-option {{profileGender === 'female' ? 'active' : ''}}">👧 女</view>
+      <view class="gender-divider"></view>
+      <view class="gender-option {{profileGender === 'male' ? 'active' : ''}}">👦 男</view>
+    </view>
   </view>
 
   <view class="stats-grid">
@@ -26,12 +31,12 @@
       <view class="menu-text">我的笔记</view>
       <view class="menu-arrow">→</view>
     </view>
-    <view class="menu-item">
+    <view class="menu-item" bindtap="onViewGrowthReport">
       <view class="menu-icon">📊</view>
       <view class="menu-text">成长报告</view>
       <view class="menu-arrow">→</view>
     </view>
-    <view class="menu-item">
+    <view class="menu-item" bindtap="onSettings">
       <view class="menu-icon">⚙️</view>
       <view class="menu-text">设置</view>
       <view class="menu-arrow">→</view>

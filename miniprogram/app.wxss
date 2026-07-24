@@ -10,6 +10,7 @@ page {
 
 .container {
   padding: 24rpx;
+  padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
   min-height: 100vh;
   box-sizing: border-box;
 }

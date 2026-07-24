@@ -4,7 +4,16 @@
     <view class="search-icon">🔍</view>
   </view>
 
-  <view class="notes-list">
+  <view class="loading-box" wx:if="{{loading}}">
+    <view class="thinking-dots">
+      <view class="dot"></view>
+      <view class="dot"></view>
+      <view class="dot"></view>
+    </view>
+    <text>加载笔记中...</text>
+  </view>
+
+  <view class="notes-list" wx:else>
     <view class="note-card" wx:for="{{notes}}" wx:key="id">
       <view class="note-header">
         <view class="note-scene">{{item.scene}}</view>
@@ -20,10 +29,11 @@
       </view>
     </view>
 
-    <view class="empty-state" wx:if="{{notes.length === 0 && !loading}}">
+    <view class="empty-state" wx:if="{{notes.length === 0}}">
       <view class="empty-icon">📝</view>
       <view class="empty-text">还没有保存笔记</view>
-      <view class="empty-hint">在生成表达后点击"保存到笔记"</view>
+      <view class="empty-hint">在生成表达后点击「保存到笔记」，这里就会有你所有的表达记录</view>
+      <button class="btn-primary empty-btn" bindtap="onGoGenerate">✨ 去生成表达</button>
     </view>
   </view>
 </view>

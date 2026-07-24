@@ -46,6 +46,10 @@ Page({
     }
   },
 
+  onGoGenerate() {
+    wx.switchTab({ url: '/pages/square/square' });
+  },
+
   async onDeleteNote(e) {
     const id = e.currentTarget.dataset.id;
     wx.showModal({

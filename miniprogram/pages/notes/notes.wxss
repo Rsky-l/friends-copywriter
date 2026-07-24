@@ -1,3 +1,20 @@
+/* 加载动画 */
+.loading-box {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 120rpx 0; color: var(--text-hint); font-size: var(--font-sm);
+}
+.thinking-dots { display: flex; gap: 12rpx; margin-bottom: var(--spacing-md); }
+.dot {
+  width: 12rpx; height: 12rpx; background: var(--color-primary);
+  border-radius: 50%; animation: dotPulse 1.2s ease-in-out infinite;
+}
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes dotPulse {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1); }
+}
+
 .search-bar {
   display: flex; align-items: center;
   background: var(--bg-white); border-radius: var(--radius-lg);
@@ -24,7 +41,12 @@
 .note-delete { font-size: 32rpx; }
 .note-star.starred { color: #FFA940; }
 
-.empty-state { text-align: center; padding: var(--spacing-xl); }
+.empty-state {
+  text-align: center; padding: 60rpx var(--spacing-md);
+  background: var(--bg-card); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card); margin-top: var(--spacing-md);
+}
 .empty-icon { font-size: 80rpx; margin-bottom: var(--spacing-md); }
-.empty-text { font-size: var(--font-md); color: var(--text-secondary); }
-.empty-hint { font-size: var(--font-sm); color: var(--text-hint); }
+.empty-text { font-size: var(--font-md); color: var(--text-secondary); margin-bottom: var(--spacing-xs); }
+.empty-hint { font-size: var(--font-xs); color: var(--text-hint); line-height: 1.8; margin-bottom: var(--spacing-lg); }
+.empty-btn { display: inline-block; width: auto; padding: 20rpx 60rpx; }

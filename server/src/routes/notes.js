@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
-// 内存存储（MVP 阶段）
-const notes = [];
+const { notes } = require('../store');
 
 // GET /api/notes - 获取所有笔记
 router.get('/', (req, res) => {

@@ -75,6 +75,16 @@ const api = {
       .map(k => `${k}=${encodeURIComponent(params[k])}`)
       .join('&');
     return request('GET', '/api/generate/history' + (query ? `?${query}` : ''));
+  },
+
+  // 技能练习
+  practiceSkill(data) {
+    return request('POST', '/api/skill/practice', data);
+  },
+
+  // 成长报告
+  getGrowthOverview() {
+    return request('GET', '/api/growth/overview');
   }
 };
 

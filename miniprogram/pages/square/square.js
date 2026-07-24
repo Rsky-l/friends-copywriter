@@ -14,6 +14,9 @@ Page({
   onShow() {
     const app = getApp();
     app.globalData.currentScene = null;
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({ selected: 0 });
+    }
   },
 
   async loadScenes() {

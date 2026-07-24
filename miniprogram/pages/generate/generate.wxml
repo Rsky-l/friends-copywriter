@@ -31,11 +31,13 @@
         bindinput="onThoughtsInput"
         maxlength="800"
         auto-height
+        focus="{{focusThoughts}}"
+        bindblur="onThoughtsBlur"
       />
       <view class="input-actions">
         <view class="input-count">{{userThoughts.length}}/800</view>
-        <view class="voice-btn" bindtap="onVoiceInput">
-          <text>🎤 语音输入</text>
+        <view class="voice-btn {{recording ? 'recording' : ''}}" bindtap="onVoiceInput">
+          <text>{{recording ? '🔴 录音中...' : '🎤 语音输入'}}</text>
         </view>
       </view>
     </view>

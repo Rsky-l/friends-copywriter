@@ -7,6 +7,18 @@
   <view class="section">
     <view class="section-title">🥊 模拟对战</view>
     <view class="section-desc">选择场景，AI 扮演强硬对手与你多轮对抗</view>
+    <view class="search-bar">
+      <view class="search-icon">🔍</view>
+      <input
+        class="search-input"
+        placeholder="搜索场景..."
+        value="{{keyword}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearch"
+        confirm-type="search"
+      />
+      <view class="search-clear" wx:if="{{keyword}}" bindtap="onClearSearch">✕</view>
+    </view>
     <view class="scene-grid">
       <scene-card
         wx:for="{{hotScenes}}"

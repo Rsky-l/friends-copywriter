@@ -1,0 +1,102 @@
+.container { padding-bottom: 120rpx; }
+
+/* 技能头部 */
+.skill-header { text-align: center; padding: var(--spacing-lg) 0; }
+.skill-badge { font-size: 48rpx; font-weight: 700; }
+.skill-desc { font-size: var(--font-sm); color: var(--text-secondary); margin-top: var(--spacing-xs); }
+
+/* 教学卡片 */
+.teaching-section { margin-bottom: var(--spacing-xl); }
+.section-label { font-size: var(--font-md); font-weight: 700; margin-bottom: var(--spacing-sm); }
+.card-scroll { white-space: nowrap; }
+.card {
+  display: inline-block;
+  vertical-align: top;
+  width: 520rpx;
+  background: var(--bg-white);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-right: var(--spacing-md);
+  box-shadow: var(--shadow-card);
+  white-space: normal;
+}
+.card-icon { font-size: 48rpx; margin-bottom: var(--spacing-sm); }
+.card-title { font-size: var(--font-lg); font-weight: 600; margin-bottom: var(--spacing-xs); color: var(--color-primary); }
+.card-body { font-size: var(--font-sm); color: var(--text-secondary); line-height: 1.6; }
+
+/* 练习区 */
+.practice-section { }
+.input-group { margin-bottom: var(--spacing-md); }
+.input-label { font-size: var(--font-sm); font-weight: 600; margin-bottom: var(--spacing-xs); color: var(--text-primary); }
+.input-area {
+  width: 100%;
+  background: var(--bg-white);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  font-size: var(--font-sm);
+  border: 2rpx solid var(--border-color);
+  box-sizing: border-box;
+  min-height: 120rpx;
+}
+
+/* 评估结果 */
+.result-section { margin-top: var(--spacing-lg); }
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--spacing-md);
+}
+.score-badge {
+  display: flex;
+  align-items: baseline;
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+}
+.score-num { font-size: 56rpx; font-weight: 700; }
+.score-label { font-size: var(--font-sm); }
+.score-word { font-size: var(--font-xl); font-weight: 600; color: var(--color-primary); }
+
+.result-overall {
+  font-size: var(--font-md);
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-white);
+  border-radius: var(--radius-md);
+}
+
+.result-block {
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-white);
+  border-radius: var(--radius-md);
+}
+.block-label { font-size: var(--font-sm); font-weight: 600; margin-bottom: var(--spacing-xs); }
+.block-item {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  padding: var(--spacing-xs) 0;
+  border-bottom: 1rpx solid var(--border-color);
+}
+.block-item:last-child { border-bottom: none; }
+
+.result-example {
+  padding: var(--spacing-md);
+  background: var(--color-primary-light, #FFF0E8);
+  border-radius: var(--radius-md);
+}
+.example-text {
+  font-size: var(--font-sm);
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin-top: var(--spacing-xs);
+}

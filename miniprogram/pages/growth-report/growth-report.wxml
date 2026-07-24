@@ -1,0 +1,119 @@
+<view class="container">
+  <!-- 加载中 -->
+  <view class="loading-box" wx:if="{{loading}}">
+    <view class="thinking-dots">
+      <view class="dot"></view>
+      <view class="dot"></view>
+      <view class="dot"></view>
+    </view>
+    <text>正在生成你的成长报告...</text>
+  </view>
+
+  <!-- 报告内容 -->
+  <block wx:else>
+    <!-- 新用户引导 -->
+    <view class="welcome-banner" wx:if="{{overview.totalPractices === 0}}">
+      <view class="welcome-illustration">🌱</view>
+      <view class="welcome-title">你的表达成长之旅即将开始</view>
+      <view class="welcome-desc">去训练场完成一次模拟对战或生成表达，回来后这里就会有你的专属成长数据</view>
+      <button class="btn-primary welcome-btn" bindtap="onGoTraining">🎯 去训练场</button>
+    </view>
+
+    <!-- 概览卡片 -->
+    <view class="overview-grid">
+      <view class="overview-card">
+        <view class="overview-num">{{overview.totalPractices}}</view>
+        <view class="overview-label">总练习次数</view>
+      </view>
+      <view class="overview-card">
+        <view class="overview-num">{{overview.completedBattles}}</view>
+        <view class="overview-label">对战局数</view>
+      </view>
+      <view class="overview-card">
+        <view class="overview-num">{{overview.totalNotes}}</view>
+        <view class="overview-label">保存笔记</view>
+      </view>
+    </view>
+
+    <!-- 技能维度 -->
+    <view class="section">
+      <view class="section-title">🎯 技能维度</view>
+      <view class="section-desc">你的表达力雷达</view>
+      <view class="skill-bars">
+        <view class="skill-bar-item" wx:for="{{skillEntries}}" wx:key="key">
+          <view class="skill-bar-header">
+            <text class="skill-bar-icon">{{item.icon}}</text>
+            <text class="skill-bar-name">{{item.name}}</text>
+            <text class="skill-bar-score">{{item.score}}分</text>
+          </view>
+          <view class="skill-bar-track">
+            <view class="skill-bar-fill" style="width: {{item.score}}%; background: {{item.score >= 60 ? '#FF7A45' : item.score >= 30 ? '#FAAD14' : '#BFBFBF'}};"></view>
+          </view>
+          <view class="skill-bar-tip">{{item.tip}}</view>
+        </view>
+      </view>
+      <view class="empty-state" wx:if="{{skillEntries.length === 0}}">
+        <view class="empty-icon">📊</view>
+        <view class="empty-text">完成模拟对战后，这里会展示你的技能评分</view>
+        <view class="empty-hint">对战结束后点击「结束复盘」，AI 会为你的表现打分</view>
+      </view>
+    </view>
+
+    <!-- 风格分布 -->
+    <view class="section">
+      <view class="section-title">✨ 风格偏好</view>
+      <view class="section-desc">你更习惯用哪种风格表达？</view>
+      <view class="style-grid">
+        <view class="style-card" wx:for="{{styleEntries}}" wx:key="key">
+          <view class="style-icon">{{item.icon}}</view>
+          <view class="style-name">{{item.label}}</view>
+          <view class="style-bar-track">
+            <view class="style-bar-fill" style="width: {{item.percent}}%; background: {{item.color}};"></view>
+          </view>
+          <view class="style-stat">{{item.count}}次 · {{item.percent}}%</view>
+        </view>
+      </view>
+      <view class="empty-state" wx:if="{{styleEntries.length === 0}}">
+        <view class="empty-icon">✨</view>
+        <view class="empty-text">还没有生成过表达</view>
+        <view class="empty-hint">去场景广场选一个场景，开始你的第一次表达练习</view>
+      </view>
+    </view>
+
+    <!-- 强项与提升 -->
+    <view class="section" wx:if="{{strengthAreas.length > 0 || improvementAreas.length > 0}}">
+      <view class="insight-cards">
+        <view class="insight-card strength" wx:if="{{strengthAreas.length > 0}}">
+          <view class="insight-label">💪 你的强项</view>
+          <view class="insight-value">{{strengthAreas[0].name}}</view>
+          <view class="insight-hint">继续保持这个优势</view>
+        </view>
+        <view class="insight-card improvement" wx:if="{{improvementAreas.length > 0}}">
+          <view class="insight-label">🎯 可以提升</view>
+          <view class="insight-value">{{improvementAreas[0].name}}</view>
+          <view class="insight-hint">去训练场专项练习</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 近期活动 -->
+    <view class="section">
+      <view class="section-title">📋 近期动态</view>
+      <view class="activity-list">
+        <view class="activity-item" wx:for="{{recentActivity}}" wx:key="index">
+          <view class="activity-dot {{item.type}}"></view>
+          <view class="activity-info">
+            <view class="activity-label">{{item.label}}</view>
+            <view class="activity-scene">{{item.scene || '日常对话'}}</view>
+          </view>
+          <view class="activity-time">{{item.timeStr}}</view>
+        </view>
+      </view>
+      <view class="empty-state" wx:if="{{recentActivity.length === 0}}">
+        <view class="empty-icon">📋</view>
+        <view class="empty-text">还没有活动记录</view>
+        <view class="empty-hint">每一次表达、每一次对战，都会记录在这里</view>
+      </view>
+    </view>
+  </block>
+</view>

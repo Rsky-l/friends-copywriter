@@ -3,7 +3,28 @@
 }
 .avatar { font-size: 100rpx; margin-bottom: var(--spacing-md); }
 .profile-name { font-size: var(--font-xl); font-weight: 700; margin-bottom: var(--spacing-xs); }
-.profile-desc { font-size: var(--font-sm); color: var(--text-secondary); }
+.profile-desc { font-size: var(--font-sm); color: var(--text-secondary); margin-bottom: var(--spacing-md); }
+
+.gender-toggle {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-card);
+  border-radius: 40rpx;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.gender-option {
+  padding: 12rpx 32rpx;
+  font-size: var(--font-sm);
+  color: var(--text-hint);
+  transition: all 0.2s;
+}
+.gender-option.active {
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+}
+.gender-divider { width: 1rpx; height: 32rpx; background: var(--border-color); }
 
 .stats-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);

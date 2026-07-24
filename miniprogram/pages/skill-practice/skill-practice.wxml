@@ -1,0 +1,80 @@
+<view class="container">
+  <!-- 技能头部 -->
+  <view class="skill-header">
+    <view class="skill-badge">{{skillIcon}} {{skillName}}</view>
+    <view class="skill-desc">{{skillDesc}}</view>
+  </view>
+
+  <!-- 教学卡片（可横向滑动） -->
+  <view class="teaching-section">
+    <view class="section-label">📚 教学卡片</view>
+    <scroll-view class="card-scroll" scroll-x="true" enhanced show-scrollbar="{{false}}">
+      <view class="card" wx:for="{{teachingCards}}" wx:key="title">
+        <view class="card-icon">{{item.icon}}</view>
+        <view class="card-title">{{item.title}}</view>
+        <view class="card-body">{{item.body}}</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 练习区 -->
+  <view class="practice-section">
+    <view class="section-label">✏️ 实战练习</view>
+
+    <view class="input-group">
+      <view class="input-label">描述一个你想练习的场景</view>
+      <textarea
+        class="input-area"
+        placeholder="比如：同事在会议上否定了我的方案，我想反驳但一时没想好怎么说..."
+        value="{{scenario}}"
+        bindinput="onScenarioInput"
+        maxlength="500"
+        auto-height
+      />
+    </view>
+
+    <view class="input-group">
+      <view class="input-label">你打算怎么说？</view>
+      <textarea
+        class="input-area"
+        placeholder="把你想到的表达写在这里..."
+        value="{{userAnswer}}"
+        bindinput="onUserAnswerInput"
+        maxlength="800"
+        auto-height
+      />
+    </view>
+
+    <button class="btn-primary" bindtap="onSubmit" disabled="{{evaluating}}">
+      {{evaluating ? 'AI 教练评估中...' : '📝 提交练习'}}
+    </button>
+
+    <!-- 评估结果 -->
+    <view class="result-section" wx:if="{{result}}">
+      <view class="result-header">
+        <view class="score-badge">
+          <view class="score-num">{{result.score}}</view>
+          <view class="score-label">/ 10</view>
+        </view>
+        <view class="score-word">{{scoreWord}}</view>
+      </view>
+
+      <view class="result-overall">{{result.overall}}</view>
+
+      <view class="result-block" wx:if="{{result.highlights.length}}">
+        <view class="block-label">👍 亮点</view>
+        <view class="block-item" wx:for="{{result.highlights}}" wx:key="*this">{{item}}</view>
+      </view>
+
+      <view class="result-block" wx:if="{{result.improvements.length}}">
+        <view class="block-label">🔧 改进建议</view>
+        <view class="block-item" wx:for="{{result.improvements}}" wx:key="*this">{{item}}</view>
+      </view>
+
+      <view class="result-example" wx:if="{{result.example}}">
+        <view class="block-label">✨ 示范回答</view>
+        <view class="example-text">{{result.example}}</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { generateExpression } = require('../services/ai');
-
-// 内存存储（MVP 阶段，后续迁移至数据库）
-const generationHistory = [];
+const { generationHistory } = require('../store');
 
 // POST /api/generate - 生成表达
 router.post('/', async (req, res) => {

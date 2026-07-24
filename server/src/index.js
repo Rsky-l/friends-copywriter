@@ -6,6 +6,8 @@ const generateRouter = require('./routes/generate');
 const battleRouter = require('./routes/battle');
 const notesRouter = require('./routes/notes');
 const scenesRouter = require('./routes/scenes');
+const skillRouter = require('./routes/skill');
+const growthRouter = require('./routes/growth');
 const { authMiddleware } = require('./middleware/auth');
 
 const app = express();
@@ -21,6 +23,8 @@ app.use('/api/scenes', scenesRouter);
 app.use('/api/generate', authMiddleware, generateRouter);
 app.use('/api/battle', authMiddleware, battleRouter);
 app.use('/api/notes', authMiddleware, notesRouter);
+app.use('/api/skill', authMiddleware, skillRouter);
+app.use('/api/growth', authMiddleware, growthRouter);
 
 // 健康检查
 app.get('/api/health', (req, res) => {

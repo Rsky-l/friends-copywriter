@@ -6,16 +6,20 @@
     "pages/generate/generate",
     "pages/result/result",
     "pages/battle/battle",
-    "pages/notes/notes"
+    "pages/notes/notes",
+    "pages/skill-practice/skill-practice",
+    "pages/growth-report/growth-report",
+    "pages/settings/settings"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FF7A45",
-    "navigationBarTitleText": "表达助手",
+    "navigationBarTitleText": "想好了说",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#FFF7F0",
     "backgroundTextStyle": "light"
   },
   "tabBar": {
+    "custom": true,
     "color": "#999999",
     "selectedColor": "#FF7A45",
     "backgroundColor": "#FFFFFF",

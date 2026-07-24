@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { battleTurn, debriefBattle } = require('../services/ai');
-
-// 内存存储（MVP 阶段）
-const battles = {};
+const { battles } = require('../store');
 
 // POST /api/battle/start - 开始新对战
 router.post('/start', async (req, res) => {

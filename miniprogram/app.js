@@ -13,8 +13,11 @@ App({
 
   globalData: {
     deviceId: null,
-    // API 服务器地址 - 开发环境
-    apiBase: 'http://localhost:3000',
+    // API 服务器地址
+    // 电脑上开发工具测试用 localhost，手机真机预览用局域网 IP
+    // 切换方法：注释掉一行，取消注释另一行
+    // apiBase: 'http://localhost:3000',       // 开发者工具
+    apiBase: 'http://192.168.110.36:3000',     // 手机真机预览
     // 当前选中的场景
     currentScene: null
   }

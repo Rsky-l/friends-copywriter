@@ -69,6 +69,15 @@
   background: var(--color-primary-bg);
   border-radius: 20rpx;
 }
+.voice-btn.recording {
+  color: #fff;
+  background: #FF4444;
+  animation: voicePulse 1s ease-in-out infinite;
+}
+@keyframes voicePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
 
 .connector {
   display: flex;

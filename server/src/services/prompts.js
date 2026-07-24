@@ -94,4 +94,56 @@ ${history}
 }`;
 }
 
-module.exports = { buildGeneratePrompt, buildBattlePrompt, buildDebriefPrompt };
+// 技能练习评估的 Prompt
+function buildSkillPracticePrompt(skillKey, skillName, scenario, userAnswer) {
+  const skillGuides = {
+    logic: {
+      name: '逻辑力',
+      criteria: '论点是否清晰、论据是否充分、推理是否严密、结论是否有力',
+      tips: '使用 MECE 原则、三段论结构、因果链分析'
+    },
+    empathy: {
+      name: '共情力',
+      criteria: '是否先认可对方情绪、是否建立了安全对话空间、是否在共情后引入了自己的视角',
+      tips: '使用 Feel-Felt-Found 方法、镜像复述对方的感受'
+    },
+    rebuttal: {
+      name: '反驳力',
+      criteria: '是否找到了对方论据的逻辑漏洞、是否保持理性而非情绪化、是否先理解再质疑',
+      tips: '使用苏格拉底式提问、归谬法、区分事实与观点'
+    },
+    humor: {
+      name: '幽默力',
+      criteria: '是否用意外连接化解紧张、分寸感是否恰当、是否保持友好不冒犯',
+      tips: '使用自嘲、类比夸张、预期反转，注意场合和分寸'
+    }
+  };
+
+  const guide = skillGuides[skillKey] || skillGuides.logic;
+
+  return `你是一个表达教练，专门帮助用户提升"${guide.name}"。
+
+## 用户练习的场景
+${scenario}
+
+## 用户的练习回答
+${userAnswer}
+
+## 评估标准
+请从以下维度评估用户的回答：
+${guide.criteria}
+
+## 实用提示
+${guide.tips}
+
+## 输出格式（严格 JSON）
+{
+  "score": 7,
+  "overall": "整体评价（2-3句话）",
+  "highlights": ["做得好的地方1", "做得好的地方2"],
+  "improvements": ["可以改进的地方1", "可以改进的地方2"],
+  "example": "一个更优的示范回答（结合用户原始场景和意图）"
+}`;
+}
+
+module.exports = { buildGeneratePrompt, buildBattlePrompt, buildDebriefPrompt, buildSkillPracticePrompt };
