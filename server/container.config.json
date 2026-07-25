@@ -1,0 +1,14 @@
+{
+  "name": "expression-assistant",
+  "description": "表达助手后端服务",
+  "containerPort": 3000,
+  "envParams": [
+    { "key": "PORT", "value": "3000" },
+    { "key": "DEEPSEEK_API_KEY", "value": "sk-4c2f2065ee6f4b1fbc71e34ab09b46d1" },
+    { "key": "DEEPSEEK_BASE_URL", "value": "https://api.deepseek.com" }
+  ],
+  "minNum": 0,
+  "maxNum": 3,
+  "cpu": 0.5,
+  "mem": 1
+}
